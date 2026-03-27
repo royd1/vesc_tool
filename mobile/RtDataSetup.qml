@@ -709,7 +709,8 @@ Item {
                 speedGauge.minimumValue = useNegativeSpeedValues ? -speedMaxRound : 0
             }
 
-            var speedNow = values.speed * 3.6 * impFact
+            var speed = VescIf.useGPS() ? null : values.speed
+            var speedNow = speed * 3.6 * impFact
             speedGauge.value = useNegativeSpeedValues ? speedNow : Math.abs(speedNow)
 
             speedGauge.unitText = useImperial ? "mph" : "km/h"
@@ -731,7 +732,7 @@ Item {
             powerGauge.value = (values.current_in * values.v_in)
             powerGauge.labelStep = Math.ceil((powerMaxRound - powerMinRound)/5000.0) * 1000.0
             var alpha = 0.05
-            var efficiencyNow = Math.max( Math.min(values.current_in * values.v_in/Math.max(Math.abs(values.speed * 3.6 * impFact), 1e-6) , 60) , -60)
+            var efficiencyNow = Math.max( Math.min(values.current_in * values.v_in/Math.max(Math.abs(speed * 3.6 * impFact), 1e-6) , 60) , -60)
             efficiency_lpf = (1.0 - alpha) * efficiency_lpf + alpha *  efficiencyNow
             efficiencyGauge.value = efficiency_lpf
             efficiencyGauge.unitText = useImperial ? "WH/MI" : "WH/KM"

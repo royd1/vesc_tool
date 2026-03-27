@@ -344,6 +344,7 @@ VescInterface::VescInterface(QObject *parent) : QObject(parent)
     mAllowScreenRotation = mSettings.value("allowScreenRotation", false).toBool();
     mSpeedGaugeUseNegativeValues =  mSettings.value("speedGaugeUseNegativeValues", true).toBool();
     mAskQmlLoad =  mSettings.value("askQmlLoad", true).toBool();
+    mUseGPS = mSettings.value("useGPS", false).toBool();
 
     mCommands->setAppConfig(mAppConfig);
     mCommands->setMcConfig(mMcConfig);
@@ -800,6 +801,7 @@ void VescInterface::storeSettings()
     mSettings.setValue("allowScreenRotation", mAllowScreenRotation);
     mSettings.setValue("speedGaugeUseNegativeValues", mSpeedGaugeUseNegativeValues);
     mSettings.setValue("askQmlLoad", mAskQmlLoad);
+    mSettings.setValue("useGPS", mUseGPS);
     mSettings.sync();
 }
 
@@ -2140,6 +2142,16 @@ bool VescInterface::askQmlLoad() const
 void VescInterface::setAskQmlLoad(bool newAskQmlLoad)
 {
     mAskQmlLoad = newAskQmlLoad;
+}
+
+bool VescInterface::useGPS()
+{
+    return mUseGPS;
+}
+
+void VescInterface::setUseGPS(bool useGPS)
+{
+    mUseGPS = useGPS;
 }
 
 #ifdef HAS_SERIALPORT

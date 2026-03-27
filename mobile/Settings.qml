@@ -133,6 +133,12 @@ Item {
                         Utility.setDarkMode(checked)
                     }
                 }
+                CheckBox {
+                    id: useGPSBox
+                    Layout.fillWidth: true
+                    text: "Use GPS for displayed speed"
+                    checked: VescIf.useGPS()
+                }
             }
         }
 
@@ -146,6 +152,7 @@ Item {
             reconnectLastCanBox.checked = VescIf.reconnectLastCan()
             scanCanConnectBox.checked = VescIf.scanCanOnConnect()
             fwUpdateAvailableBox.checked = VescIf.showFwUpdateAvailable()
+            useGPSBox.checked = VescIf.useGPS()
         }
 
         onClosed: {
@@ -158,6 +165,7 @@ Item {
             VescIf.setReconnectLastCan(reconnectLastCanBox.checked)
             VescIf.setScanCanOnConnect(scanCanConnectBox.checked)
             VescIf.setShowFwUpdateAvailable(fwUpdateAvailableBox.checked)
+            VescIf.setUseGPS(useGPSBox.checked)
             VescIf.storeSettings()
 
             Utility.keepScreenOn(VescIf.keepScreenOn())

@@ -164,6 +164,8 @@ public:
     Q_INVOKABLE void setSpeedGaugeUseNegativeValues(bool useNegativeValues);
     Q_INVOKABLE bool askQmlLoad() const;
     Q_INVOKABLE void setAskQmlLoad(bool newAskQmlLoad);
+    Q_INVOKABLE bool useGPS();
+    Q_INVOKABLE void setUseGPS(bool useGPS);
 
 #ifdef HAS_BLUETOOTH
     Q_INVOKABLE BleUart* bleDevice();
@@ -488,6 +490,7 @@ private:
     bool mAskQmlLoad;
     bool mIgnoreCustomConfigs;
     bool mIgnoreTestVersion;
+    bool mUseGps;
 
     void updateFwRx(bool fwRx);
     void setLastConnectionType(conn_t type);
